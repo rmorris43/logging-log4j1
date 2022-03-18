@@ -172,7 +172,7 @@ public final class LogMF extends LogXF {
                             formatted[index] = formatObject(arguments[index]);
                          }
                     }
-                    retval += formatted[index];
+                    retval += formatted[index]; // TODO: performance; concat string  in loop; use StringBuffer.
                     prev = pos + 3;
                     pos = pattern.indexOf('{', prev);
                 } else {
