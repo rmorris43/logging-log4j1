@@ -118,7 +118,7 @@ public class AbsoluteTimeDateFormat extends DateFormat {
       // store the time string for next time to avoid recomputation
       sbuf.getChars(start, sbuf.length(), previousTimeWithoutMillis, 0);
       
-      previousTime = now - millis;
+      previousTime = now - millis; // TODO: writing to static var. make unstatic.
     }
     else {
       sbuf.append(previousTimeWithoutMillis);
