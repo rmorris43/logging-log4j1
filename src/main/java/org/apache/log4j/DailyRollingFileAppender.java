@@ -321,7 +321,7 @@ public class DailyRollingFileAppender extends FileAppender {
 
     File target  = new File(scheduledFilename);
     if (target.exists()) {
-      target.delete();
+      target.delete();                // TODO: method ignores exceptional return value
     }
 
     File file = new File(fileName);
