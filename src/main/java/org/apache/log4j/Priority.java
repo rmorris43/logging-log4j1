@@ -98,6 +98,8 @@ public class Priority {
     }
   }
 
+  // TODO: Implement hashCode() to override super
+
   /**
      Return the syslog equivalent of this priority as an integer.
    */
