@@ -133,7 +133,7 @@ public abstract class AppenderSkeleton implements Appender, OptionHandler {
      <code>close</code> method.
 
      @since 0.8.4 */
-  public
+  public   // TODO: make finalize protected
   void finalize() {
     // An appender might be closed then garbage collected. There is no
     // point in closing twice.
