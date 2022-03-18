@@ -151,7 +151,7 @@ public class OptionConverter {
     if(value != null) {
       String s = value.trim();
       try {
-	return Integer.valueOf(s).intValue();
+	return Integer.valueOf(s).intValue(); // TODO: use Integer.parseInt instead
       }
       catch (NumberFormatException e) {
 	 LogLog.error("[" + s + "] is not in proper int form.");
