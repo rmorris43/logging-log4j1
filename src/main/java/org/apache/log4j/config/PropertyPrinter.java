@@ -121,7 +121,7 @@ public class PropertyPrinter implements PropertyGetter.PropertyCallback {
     String catKey = (cat == Logger.getRootLogger())
         ? "log4j.rootLogger"
         : "log4j.logger." + cat.getName();
-    if (appenderString != "") {
+    if (appenderString != "") {  // TODO: change to string.equals()
       out.println(catKey + "=" + appenderString);
     }
     if (!cat.getAdditivity() && cat != Logger.getRootLogger()) {
