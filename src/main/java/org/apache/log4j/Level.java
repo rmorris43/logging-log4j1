@@ -185,9 +185,6 @@ public class Level extends Priority implements Serializable {
       level = s.readInt();
       syslogEquivalent = s.readInt();
       levelStr = s.readUTF();
-      if (levelStr == null) { // TODO: Redundant null check
-          levelStr = "";
-      }
     }
 
     /**
