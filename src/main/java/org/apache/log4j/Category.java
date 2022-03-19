@@ -973,7 +973,10 @@ public class Category implements AppenderAttachable {
   */
   public
   void setPriority(Priority priority) {
-    this.level = (Level) priority; // TODO: unchecked cast
+
+      if (priority instanceof Level){
+          this.level = (Level) priority;
+      }
   }
 
 
