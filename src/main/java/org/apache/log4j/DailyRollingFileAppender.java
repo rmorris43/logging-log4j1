@@ -319,7 +319,10 @@ public class DailyRollingFileAppender extends FileAppender {
 
     File target  = new File(scheduledFilename);
     if (target.exists()) {
-      target.delete();                // TODO: method ignores exceptional return value
+        boolean success = target.delete();
+        if (!success){
+            LogLog.error("Failed to delete ["+scheduledFilename+"].");
+        }
     }
 
     File file = new File(fileName);
