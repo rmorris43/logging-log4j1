@@ -67,7 +67,7 @@ public class AbsoluteTimeDateFormat extends DateFormat {
     setCalendar(Calendar.getInstance(timeZone));
   }
 
-  private static long   previousTime;
+  private long   previousTime;
   private static char[] previousTimeWithoutMillis = new char[9]; // "HH:mm:ss."
 
   /**
@@ -118,7 +118,7 @@ public class AbsoluteTimeDateFormat extends DateFormat {
       // store the time string for next time to avoid recomputation
       sbuf.getChars(start, sbuf.length(), previousTimeWithoutMillis, 0);
       
-      previousTime = now - millis; // TODO: writing to static var. make unstatic.
+      previousTime = now - millis;
     }
     else {
       sbuf.append(previousTimeWithoutMillis);
