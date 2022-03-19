@@ -98,7 +98,13 @@ public class Priority {
     }
   }
 
-  // TODO: Implement hashCode() to override super
+  /**
+   Override hashCode
+   */
+  public int hashCode() {
+    assert false;
+    return 42;
+  }
 
   /**
      Return the syslog equivalent of this priority as an integer.
