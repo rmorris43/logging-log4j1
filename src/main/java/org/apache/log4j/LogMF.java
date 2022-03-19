@@ -157,6 +157,7 @@ public final class LogMF extends LogXF {
             String formatted[] = new String[10];
             int prev = 0;
             String retval = "";
+            StringBuffer buf = new StringBuffer();
             int pos = pattern.indexOf('{');
             while(pos >= 0) {
                 if(pos + 2 < pattern.length() && 
@@ -164,7 +165,7 @@ public final class LogMF extends LogXF {
                       pattern.charAt(pos+1) >= '0' &&
                       pattern.charAt(pos+1) <= '9') {
                     int index = pattern.charAt(pos+1) - '0';
-                    retval += pattern.substring(prev, pos);
+                    buf.append(pattern.substring(prev, pos));
                     if (formatted[index] == null) {
                          if (arguments == null || index >= arguments.length) {
                             formatted[index] = pattern.substring(pos, pos+3);
@@ -172,14 +173,15 @@ public final class LogMF extends LogXF {
                             formatted[index] = formatObject(arguments[index]);
                          }
                     }
-                    retval += formatted[index]; // TODO: performance; concat string  in loop; use StringBuffer.
+                    buf.append(formatted[index]);
                     prev = pos + 3;
                     pos = pattern.indexOf('{', prev);
                 } else {
                     pos = pattern.indexOf('{', pos + 1);
                 }
             }
-            retval += pattern.substring(prev);
+            buf.append(pattern.substring(prev));
+            retval = buf.toString();
             return retval;
         }
         try {
