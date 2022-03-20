@@ -23,6 +23,8 @@ import java.text.MessageFormat;
 import java.text.NumberFormat;
 import java.util.Date;
 import java.text.DateFormat;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 /**
@@ -63,6 +65,11 @@ public class TestLogMF extends TestCase {
     }
 
 
+    public
+    void setUp() {
+        logger.setLevel(TRACE);
+    }
+
     /**
      * Post test clean up.
      */
@@ -88,7 +95,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceNullPattern() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
         LogMF.trace(logger, null, Math.PI);
         assertNull(capture.getMessage());
     }
@@ -98,7 +104,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceNoArg() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
         LogMF.trace(logger, "Hello, World", Math.PI);
         assertEquals("Hello, World", capture.getMessage());
     }
@@ -108,7 +113,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceBadPattern() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
         LogMF.trace(logger, "Hello, {.", Math.PI);
         assertEquals("Hello, {.", capture.getMessage());
     }
@@ -118,7 +122,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceMissingArg() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
         LogMF.trace(logger, "Hello, {0}World", new Object[0]);
         assertEquals("Hello, {0}World", capture.getMessage());
     }
@@ -128,7 +131,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceString() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
         LogMF.trace(logger, "Hello, {0}", "World");
         assertEquals("Hello, World", capture.getMessage());
     }
@@ -138,7 +140,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceNull() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
         LogMF.trace(logger, "Hello, {0}", (Object) null);
         assertEquals("Hello, null", capture.getMessage());
     }
@@ -148,7 +149,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceInt() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
 
         int val = 42;
         LogMF.trace(logger, "Iteration {0}", val);
@@ -160,7 +160,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceByte() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
 
         byte val = 42;
         LogMF.trace(logger, "Iteration {0}", val);
@@ -172,7 +171,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceShort() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
 
         short val = 42;
         LogMF.trace(logger, "Iteration {0}", val);
@@ -184,7 +182,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceLong() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
 
         long val = 42;
         LogMF.trace(logger, "Iteration {0}", val);
@@ -196,7 +193,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceChar() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
 
         char val = 'C';
         LogMF.trace(logger, "Iteration {0}", val);
@@ -208,7 +204,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceBoolean() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
 
         boolean val = true;
         LogMF.trace(logger, "Iteration {0}", val);
@@ -220,7 +215,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceFloat() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
 
         float val = 3.14f;
         NumberFormat format = NumberFormat.getInstance();
@@ -233,7 +227,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceDouble() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
 
         double val = 3.14;
         NumberFormat format = NumberFormat.getInstance();
@@ -246,7 +239,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceTwoArg() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
         LogMF.trace(logger, "{1}, {0}.", "World", "Hello");
         assertEquals("Hello, World.", capture.getMessage());
     }
@@ -256,7 +248,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceThreeArg() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
         LogMF.trace(logger, "{1}{2} {0}.", "World", "Hello", ",");
         assertEquals("Hello, World.", capture.getMessage());
     }
@@ -266,7 +257,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceFourArg() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
         LogMF.trace(logger, "{1}{2} {0}{3}", "World", "Hello", ",", ".");
         assertEquals("Hello, World.", capture.getMessage());
     }
@@ -276,7 +266,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceArrayArg() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
 
         Object[] args = new Object[] { "World", "Hello", ",", "." };
         LogMF.trace(logger, "{1}{2} {0}{3}", args);
@@ -288,7 +277,6 @@ public class TestLogMF extends TestCase {
      */
     public void testTraceNullArrayArg() {
         LogCapture capture = new LogCapture(TRACE);
-        logger.setLevel(TRACE);
 
         Object[] args = null;
         LogMF.trace(logger, "{1}{2} {0}{3}", args);

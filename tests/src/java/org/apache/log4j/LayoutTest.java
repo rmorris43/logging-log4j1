@@ -82,14 +82,14 @@ public class LayoutTest extends TestCase {
    * Tests Layout.LINE_SEP.
    */
   public void testLineSep() {
-    assertEquals(System.getProperty("line.separator"), Layout.LINE_SEP);
+    assertEquals("Failed testLineSep equals", System.getProperty("line.separator"), Layout.LINE_SEP);
   }
 
   /**
    * Tests Layout.LINE_SEP.
    */
   public void testLineSepLen() {
-    assertEquals(Layout.LINE_SEP.length(), Layout.LINE_SEP_LEN);
+    assertEquals("Failed testLineSepLen equals", Layout.LINE_SEP.length(), Layout.LINE_SEP_LEN);
   }
 
   /**
@@ -104,28 +104,28 @@ public class LayoutTest extends TestCase {
    * Tests getContentType.
    */
   public void testGetContentType() {
-    assertEquals(contentType, createLayout().getContentType());
+    assertEquals("Failed testGetContentType equals", contentType, createLayout().getContentType());
   }
 
   /**
    * Tests ignoresThrowable.
    */
   public void testIgnoresThrowable() {
-    assertEquals(ignoresThrowable, createLayout().ignoresThrowable());
+    assertEquals("Failed testIgnoreThrowable equals", ignoresThrowable, createLayout().ignoresThrowable());
   }
 
   /**
    * Tests getHeader.
    */
   public void testGetHeader() {
-    assertEquals(header, createLayout().getHeader());
+    assertEquals("Failed testGetHeader equals", header, createLayout().getHeader());
   }
 
   /**
    * Tests getFooter.
    */
   public void testGetFooter() {
-    assertEquals(footer, createLayout().getFooter());
+    assertEquals("Failed testGetFooter equals", footer, createLayout().getFooter());
   }
 
   /**
@@ -140,6 +140,8 @@ public class LayoutTest extends TestCase {
     String result = createLayout().format(event);
     assertEquals("Mock", result);
   }
+
+
 
   /**
    * Concrete Layout class for tests.
