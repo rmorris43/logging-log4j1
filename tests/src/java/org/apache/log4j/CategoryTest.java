@@ -84,6 +84,7 @@ public class CategoryTest extends TestCase {
     Logger logger = Logger.getLogger("org.example.foo");
     Priority debug = Level.DEBUG;
     logger.setPriority(debug);
+    assertTrue(logger.getPriority() == Level.DEBUG);
   }
 
   /**

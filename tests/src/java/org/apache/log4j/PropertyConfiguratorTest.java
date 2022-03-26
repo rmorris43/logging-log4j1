@@ -40,6 +40,9 @@ import org.apache.log4j.varia.LevelRangeFilter;
  *
  */
 public class PropertyConfiguratorTest extends TestCase {
+
+    private final int MIN_INDEX = 0;
+
     public PropertyConfiguratorTest(final String testName) {
         super(testName);
     }
@@ -57,6 +60,7 @@ public class PropertyConfiguratorTest extends TestCase {
         writer.close();
         PropertyConfigurator.configure(fileName);
         File file = new File(fileName);
+        assertTrue(file.exists());
         assertTrue(file.delete()) ;
         assertFalse(file.exists());
     }
@@ -119,7 +123,7 @@ public class PropertyConfiguratorTest extends TestCase {
         FixedWindowRollingPolicy rollingPolicy = (FixedWindowRollingPolicy) rfa.getRollingPolicy();
         assertEquals("filterBase-test1.log", rollingPolicy.getActiveFileName());
         assertEquals("filterBased-test1.%i", rollingPolicy.getFileNamePattern());
-        assertEquals(0, rollingPolicy.getMinIndex());
+        assertEquals(MIN_INDEX, rollingPolicy.getMinIndex());
         assertTrue(rollingPolicy.isActivated());
         FilterBasedTriggeringPolicy triggeringPolicy =
                 (FilterBasedTriggeringPolicy) rfa.getTriggeringPolicy();

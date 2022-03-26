@@ -124,9 +124,62 @@ public class LoggerTestCase extends TestCase {
     ab.debug(MSG); assertEquals(ca.counter, 1);
     ab.info(MSG);  assertEquals(ca.counter, 2);
     ab.warn(MSG);  assertEquals(ca.counter, 3);
-    ab.error(MSG); assertEquals(ca.counter, 4);    
-    
+    ab.error(MSG); assertEquals(ca.counter, 4);
+  }
 
+  /**
+   Test if logger a.b inherits its appender from a.
+   */
+  public
+  void testAdditivityDebug() {
+    Logger a = Logger.getLogger("a");
+    Logger ab = Logger.getLogger("a.b");
+    CountingAppender ca = new CountingAppender();
+    a.addAppender(ca);
+
+    assertEquals(ca.counter, 0);
+    ab.debug(MSG); assertEquals(ca.counter, 1);
+  }
+  /**
+   Test if logger a.b inherits its appender from a.
+   */
+  public
+  void testAdditivityInfo() {
+    Logger a = Logger.getLogger("a");
+    Logger ab = Logger.getLogger("a.b");
+    CountingAppender ca = new CountingAppender();
+    a.addAppender(ca);
+
+    assertEquals(ca.counter, 0);
+    ab.info(MSG); assertEquals(ca.counter, 1);
+  }
+
+  /**
+   Test if logger a.b inherits its appender from a.
+   */
+  public
+  void testAdditivityWarn() {
+    Logger a = Logger.getLogger("a");
+    Logger ab = Logger.getLogger("a.b");
+    CountingAppender ca = new CountingAppender();
+    a.addAppender(ca);
+
+    assertEquals(ca.counter, 0);
+    ab.warn(MSG); assertEquals(ca.counter, 1);
+  }
+
+  /**
+   * Test if logger a.b inherits its appender from a.
+   */
+  public
+  void testAdditivityError() {
+    Logger a = Logger.getLogger("a");
+    Logger ab = Logger.getLogger("a.b");
+    CountingAppender ca = new CountingAppender();
+    a.addAppender(ca);
+
+    assertEquals(ca.counter, 0);
+    ab.error(MSG); assertEquals(ca.counter, 1);
   }
 
   /**
